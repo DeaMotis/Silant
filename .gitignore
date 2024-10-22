@@ -1,5 +1,18 @@
-# Object file
-*.o
+# Для Django
+*.pyc
+__pycache__/
+venv/               # Виртуальное окружение
+.env                # Файл с переменными окружения
+db.sqlite3          # Файл базы данных (если используется SQLite)
+*.log               # Логи
 
-# Ada Library Information
-*.ali
+# Для React
+node_modules/      # Директория с зависимостями
+build/             # Сборка приложения
+*.env              # Файл с переменными окружения для React
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Общие игнорируемые файлы
+Thumbs.db          # Для Windows
