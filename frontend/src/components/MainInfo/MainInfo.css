@@ -1,0 +1,52 @@
+.navigation-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.nav-btn {
+    box-shadow: 3px 2px var(--color-1);
+    border-radius: 50% 5% 0 0;
+    color: azure;
+    margin: 5px 15px;
+    padding: 15px 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-btn:active {
+    box-shadow: 2px 3px var(--color-1);
+    border-radius: 70% 25% 0 0;
+    color: var(--color-1);
+}
+
+.active {
+    background-color: var(--color-2);
+    color: var(--color-3);
+    font-family: "PT Astra Font bold";
+}
+
+.passive {
+    background-color: white;
+    color: var(--color-2);
+    ;
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+
+    .nav-btn {
+        font-size: 0.8rem;
+        margin: 5px 10px;
+        padding: 10px 20px;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 766px) {
+
+    .nav-btn {
+        font-size: 0.5rem;
+        margin: 5px 10px;
+        padding: 5px 10px;
+    }
+
+}

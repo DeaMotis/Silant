@@ -1,0 +1,41 @@
+.contacts {
+    display: flex;
+    align-items: center;
+    font-family: "PT Astra Font bold";
+}
+
+.contacts>div {
+    margin: 10px;
+    color: var(--color-2);
+}
+
+.contacts a {
+    margin: 10px;
+    color: black;
+}
+
+.contacts a:hover {
+    color: var(--color-2);
+}
+
+.icon {
+    height: 50px;
+    margin-left: 40px;
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+
+    .icon {
+        height: 30px;
+        margin-left: 20px;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 766px) {
+
+    .icon {
+        height: 20px;
+        margin-left: 10px;
+    }
+}

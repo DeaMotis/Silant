@@ -1,0 +1,127 @@
+.complaint-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+}
+
+.complaint-result-table {
+    font-size: 1rem;
+    text-align: center;
+    margin: 20px 20px;
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    border: 2px solid var(--color-1);
+}
+
+.complaint-result-table button {
+    padding: 3px;
+    color: var(--color-1);
+    background-color: var(--color-3);
+    width: 60px;
+    border: 2px solid;
+    border-radius: 40% 0 0 0;
+}
+
+.complaint-result-table button:focus {
+    color: var(--color-2);
+}
+
+.empty-cell {
+    background-color: var(--color-1);
+}
+
+.complaint-data-filter {
+    font-size: 1rem;
+    padding: 5px;
+    background-color: var(--color-3);
+    text-align: center;
+    border-radius: 40% 0 0 0;
+}
+
+.complaint-data-filter:focus {
+    color: var(--color-2);
+    border: solid 1px red;
+    font-family: "PT Astra Font bold";
+}
+
+.add-complaint-btn {
+    margin: 20px;
+    padding: 10px 40px;
+    background-color: var(--color-2);
+    box-shadow: 1px 2px var(--color-1);
+    color: azure;
+    border: none;
+    border-radius: 2px;
+    font-family: "PT Astra Font regular", sans-serif;
+    font-size: 1.1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.add-complaint-btn:active {
+    box-shadow: 2px 1px var(--color-1);
+    color: var(--color-1);
+}
+
+.complaint-result-table th,
+.complaint-result-table td {
+    border: 2px var(--color-1) solid;
+    padding: 10px;
+}
+
+@media (min-width:992px) and (max-width: 1365px) {
+
+    .complaint-result-table th,
+    .complaint-result-table td {
+        font-size: 0.8rem;
+    }
+
+    .complaint-data-filter {
+        font-size: 0.8rem;
+    }
+
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+
+    .complaint-result-table {
+        font-size: 0.7rem;
+        margin: 10px 10px;
+    }
+
+    .complaint-result-table th,
+    .complaint-result-table td {
+        border: 1px var(--color-1) solid;
+        padding: 7px;
+    }
+
+    .complaint-data-filter {
+        font-size: 0.7rem;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 766px) {
+
+    .complaint-result-table {
+        font-size: 0.5rem;
+        margin: 10px;
+    }
+
+    .complaint-result-table th,
+    .complaint-result-table td {
+        border: 1px var(--color-1) solid;
+        padding: 3px;
+    }
+
+    .add-complaint-btn {
+        font-size: 0.5rem;
+    }
+
+    .complaint-data-filter {
+        font-size: 0.5rem;
+    }
+
+}
