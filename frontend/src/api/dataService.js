@@ -3,16 +3,16 @@ import axios from 'axios'
 import {
 	BASE_URL,
 	LOGIN_URL,
-	ALL_CARS_URL,
-	DEFINITE_CAR_URL,
-	CLIENTS_CARS_URL,
-	SERVICE_COMPANIES_CARS_URL,
+	ALL_MACHINES_URL,
+	DEFINITE_MACHINE_URL,
+	CLIENTS_MACHINES_URL,
+	SERVICE_COMPANIES_MACHINES_URL,
 	ALL_MAINTENANCE_URL,
 	CLIENTS_MAINTENANCE_URL,
 	SERVICE_COMPANIES_MAINTENANCE_URL,
-	ALL_COMPLAINTS_URL,
-	CLIENTS_COMPLAINTS_URL,
-	SERVICE_COMPANIES_COMPLAINTS_URL,
+	ALL_CLAIMS_URL,
+	CLIENTS_CLAIMS_URL,
+	SERVICE_COMPANIES_CLAIMS_URL,
 	MAINTENANCE_TYPES_URL,
 	ALL_SERVICE_COMPANIES_URL,
 	BREAKAGES_URL,
@@ -65,10 +65,10 @@ const getServiceCompanyId = async userId => {
 		.catch(error => console.log('Ошибка получения данных о погрузчиках', error))
 }
 
-const getFilteredCars = async (id, setter) => {
+const getFilteredMachines = async (id, setter) => {
 	return await axios({
 		baseURL: BASE_URL,
-		url: `cars/${id}/${DEFINITE_CAR_URL}`,
+		url: `machine/${id}/${DEFINITE_MACHINE_URL}`,
 		method: 'get',
 	})
 		.then(response => {
@@ -91,10 +91,10 @@ const getAllClients = async setter => {
 		})
 }
 
-const getAllCars = async (setter1, setter2) => {
+const getAllMachines = async (setter1, setter2) => {
 	return await axios({
 		baseURL: BASE_URL,
-		url: ALL_CARS_URL,
+		url: ALL_MACHINES_URL,
 		method: 'get',
 	}).then(response => {
 		setter1(response.data)
@@ -104,10 +104,10 @@ const getAllCars = async (setter1, setter2) => {
 	})
 }
 
-const getClientsCars = async (user, password, id, setter1, setter2) => {
+const getClientsMachines = async (user, password, id, setter1, setter2) => {
 	return await axios({
 		baseURL: BASE_URL,
-		url: CLIENTS_CARS_URL,
+		url: CLIENTS_MACHINES_URL,
 		method: 'get',
 		params: {
 			id: id,
@@ -126,10 +126,10 @@ const getClientsCars = async (user, password, id, setter1, setter2) => {
 		.catch(error => console.log('Ошибка получения данных о погрузчиках', error))
 }
 
-const getServiceCompaniesCars = async (user, password, setter1, setter2) => {
+const getServiceCompaniesMachines = async (user, password, setter1, setter2) => {
 	return await axios({
 		baseURL: BASE_URL,
-		url: SERVICE_COMPANIES_CARS_URL,
+		url: SERVICE_COMPANIES_MACHINES_URL,
 		method: 'get',
 		params: {
 			name: user,
@@ -212,10 +212,10 @@ const getServiceCompaniesMaintenance = async (
 		.catch(error => console.log('Ошибка получения данных о ТО', error))
 }
 
-const getAllComplaints = async (setter1, setter2) => {
+const getAllClaims = async (setter1, setter2) => {
 	return await axios({
 		baseURL: BASE_URL,
-		url: ALL_COMPLAINTS_URL,
+		url: ALL_CLAIMS_URL,
 		method: 'get',
 	})
 		.then(response => {
@@ -227,10 +227,10 @@ const getAllComplaints = async (setter1, setter2) => {
 		.catch(error => console.log('Ошибка получения данных о рекламациях', error))
 }
 
-const getClientsComplaints = async (user, password, id, setter1, setter2) => {
+const getClientsClaims = async (user, password, id, setter1, setter2) => {
 	return await axios({
 		baseURL: BASE_URL,
-		url: CLIENTS_COMPLAINTS_URL,
+		url: CLIENTS_CLAIMS_URL,
 		method: 'get',
 		params: {
 			id: id,
@@ -249,7 +249,7 @@ const getClientsComplaints = async (user, password, id, setter1, setter2) => {
 		.catch(error => console.log('Ошибка получения данных о рекламациях', error))
 }
 
-const getServiceCompaniesComplaints = async (
+const getServiceCompaniesClaims = async (
 	user,
 	password,
 	setter1,
@@ -257,7 +257,7 @@ const getServiceCompaniesComplaints = async (
 ) => {
 	return await axios({
 		baseURL: BASE_URL,
-		url: SERVICE_COMPANIES_COMPLAINTS_URL,
+		url: SERVICE_COMPANIES_CLAIMS_URL,
 		method: 'get',
 		params: {
 			name: user,
@@ -478,7 +478,7 @@ const postNewMaintenance = async (
 		})
 }
 
-const postNewComplaint = async (
+const postNewClaim = async (
 	user,
 	password,
 	group,
@@ -492,7 +492,7 @@ const postNewComplaint = async (
 
 	return await axios({
 		baseURL: BASE_URL,
-		url: ALL_COMPLAINTS_URL,
+		url: ALL_CLAIMS_URL,
 		method: 'post',
 		data: data,
 		auth: {
@@ -510,10 +510,10 @@ const postNewComplaint = async (
 		})
 }
 
-const postNewCar = async (user, password, data, redirection) => {
+const postNewMachine = async (user, password, data, redirection) => {
 	return await axios({
 		baseURL: BASE_URL,
-		url: ALL_CARS_URL,
+		url: ALL_MACHINES_URL,
 		method: 'post',
 		data: data,
 		auth: {
@@ -581,18 +581,18 @@ const changeCatalog = async (
 }
 
 export {
-	getFilteredCars,
-	getAllCars,
+	getFilteredMachines,
+	getAllMachines,
 	getAllServiceCompanies,
 	getAllMaintenance,
-	getAllComplaints,
+	getAllClaims,
 	getDetails,
-	getClientsCars,
-	getServiceCompaniesCars,
+	getClientsMachines,
+	getServiceCompaniesMachines,
 	getClientsMaintenance,
 	getServiceCompaniesMaintenance,
-	getClientsComplaints,
-	getServiceCompaniesComplaints,
+	getClientsClaims,
+	getServiceCompaniesClaims,
 	getMaintenanceTypes,
 	getServiceCompanyId,
 	getBreakagesList,
@@ -606,8 +606,8 @@ export {
 	getAllCatalogs,
 	getUniversalData,
 	postNewMaintenance,
-	postNewComplaint,
-	postNewCar,
+	postNewClaim,
+	postNewMachine,
 	postNewCatalog,
 	changeCatalog,
 	login,

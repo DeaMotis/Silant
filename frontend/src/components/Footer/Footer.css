@@ -1,0 +1,24 @@
+.footer {
+    min-height: 15%;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-family: "PT Astra Font bold";
+    background-color: var(--color-1);
+    color: white;
+    padding: 25px 20px;
+}
+
+.footer a {
+    color: white;
+}
+
+@media (min-width: 320px) and (max-width: 766px) {
+
+    .footer {
+        padding: 5px 5px;
+        font-size: 0.45rem;
+    }
+
+}

@@ -1,0 +1,46 @@
+.catalogs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+.catalogs-title {
+    margin: 30px;
+}
+
+.catalogs-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+
+.catalogs-list a {
+    width: 50%;
+    margin: 10px;
+    padding: 5px 10px;
+    border: 2px solid var(--color-1);
+    border-radius: 40% 0 0 0;
+    box-shadow: 2px 1px var(--color-1);
+    text-align: center;
+    color: var(--color-1);
+}
+
+.catalogs-return-btn {
+    margin: 20px;
+    padding: 10px 40px;
+    background-color: var(--color-2);
+    box-shadow: 1px 2px var(--color-1);
+    color: azure;
+    border: none;
+    border-radius: 2px;
+    font-family: "PT Astra Font regular", sans-serif;
+    font-size: 1.1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.catalogs-return-btn:active {
+    box-shadow: 2px 1px var(--color-1);
+    color: var(--color-1);
+}

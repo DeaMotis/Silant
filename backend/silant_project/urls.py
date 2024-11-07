@@ -21,7 +21,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('silant/', RedirectView.as_view(url='http://localhost:3000/')),
     path('accounts/', include('allauth.urls')),
-    path('api/', include('auth_app.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('', include('silant_django_app.urls')),
 ]

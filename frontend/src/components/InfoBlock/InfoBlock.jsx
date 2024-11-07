@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import './InfoPanel.css'
-import { GROUPS, SWAGGER_URL } from '../utils/constants.js'
-import MainInfo from './MainInfo.jsx'
-import serviceContext from '../context/Context.js'
+import './InfoBlock.css'
+import { GROUPS, SWAGGER_URL } from '../../utils/constants.js'
+import MainInfo from '../MainInfo/MainInfo.jsx'
+import serviceContext from '../../context/Context.js'
 
 const InfoBlock = () => {
 	const { pageId, setPageId } = useContext(serviceContext)

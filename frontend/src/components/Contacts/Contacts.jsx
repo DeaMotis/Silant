@@ -1,7 +1,7 @@
 import React from 'react'
 import './Contacts.css'
-import PhoneIcon from '../static/images/Telephone-icon.png'
-import TelegramIcon from '../static/images/Telegram-icon.png'
+import PhoneIcon from '../../static/images/phone-alt-svgrepo-com.svg'
+import TelegramIcon from '../../static/images/telegram-svgrepo-com.svg'
 
 const Contacts = () => {
 	return (

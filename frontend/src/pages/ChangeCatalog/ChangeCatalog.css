@@ -1,0 +1,110 @@
+.change-catalog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+.change-catalog-title {
+    margin: 40px 20px;
+    text-align: center;
+}
+
+.change-catalog-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+.change-catalog-form textarea,
+.change-catalog-form input {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    width: 70%;
+    text-align: center;
+    font-size: 1.1rem;
+    border: 1px solid var(--color-1);
+    box-shadow: 2px 1px var(--color-1);
+}
+
+.change-catalog-form>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.change-catalog-form textarea {
+    height: 220px;
+}
+
+.change-catalog-form label {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.catalog-description {
+    height: 200px;
+}
+
+.submit-catalog-btn {
+    padding: 10px 40px;
+    background-color: var(--color-2);
+    box-shadow: 1px 2px var(--color-1);
+    color: azure;
+    border: none;
+    border-radius: 2px;
+    font-family: "PT Astra Font regular", sans-serif;
+    font-size: 1.1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.submit-catalog-btn:active {
+    box-shadow: 2px 1px var(--color-1);
+    color: var(--color-1);
+}
+
+.submit-catalog-btn:disabled {
+    background-color: white;
+    border: 0.5px solid var(--color-1);
+    color: black;
+    box-shadow: none;
+}
+
+.change-catalog-form input:invalid,
+.change-catalog-form textarea:invalid {
+    border: 2px solid var(--color-2);
+}
+
+
+@media (min-width: 767px) and (max-width: 991px) {
+    .change-catalog-title {
+        font-size: 1.4rem;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 766px) {
+
+    .change-catalog-title {
+        font-size: 1rem;
+        margin: 30px 20px;
+    }
+
+    .change-catalog-form textarea,
+    input {
+        padding: 10px 20px;
+        font-size: 0.7rem;
+    }
+
+    .change-catalog-form label {
+        font-size: 0.9rem;
+    }
+
+    .change-catalog-form textarea {
+        height: 180px;
+    }
+
+}

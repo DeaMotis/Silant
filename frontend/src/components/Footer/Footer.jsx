@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.css'
-import Contacts from './Contacts.jsx'
+import Contacts from '../Contacts/Contacts.jsx'
 
 const Footer = () => {
 	return (

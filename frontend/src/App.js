@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
 import { Routes, Route, Outlet } from 'react-router-dom'
-import serviceContext from './context/createContext'
+import serviceContext from './context/Context'
 import './App.css'
 import './static/styles/variables.css'
-import MainPage from './pages/MainPage.jsx'
-import Header from './components/Header.jsx'
-import Footer from './components/Footer.jsx'
-import AuthPage from './pages/AuthPage.jsx'
-import DetailPage from './pages/DetailPage.jsx'
-import AuthErrorPage from './pages/AuthErrorPage.jsx'
-import AddMaintenancePage from './pages/AddMaintenancePage.jsx'
-import AddComplaintPage from './pages/AddComplaintPage.jsx'
-import AddCarPage from './pages/AddCarPage.jsx'
-import CatalogsPage from './pages/CatalogsPage.jsx'
-import CatalogPage from './pages/CatalogPage.jsx'
-import ChangeCatalogPage from './pages/ChangeCatalogPage.jsx'
-import AddCatalogPage from './pages/AddCatalogPage.jsx'
-import PostSuccessPage from './pages/PostSuccessPage.jsx'
-import PostFailPage from './pages/PostFailPage.jsx'
+import MainPage from './pages/MainPage/MainPage.jsx'
+import Header from './components/Header/Header.jsx'
+import Footer from './components/Footer/Footer.jsx'
+import AuthPage from './pages/AuthPage/AuthPage.jsx'
+import DetailPage from './pages/DetailPage/DetailPage.jsx'
+import AuthError from './pages/AuthError/AuthError.jsx'
+import AddMaintenancePage from './pages/AddMaintenancePage/AddMaintenancePage.jsx'
+import AddClaimPage from './pages/AddClaimPage/AddClaimPage.jsx'
+import AddMachinePage from './pages/AddMachinePage/AddMachinePage.jsx'
+import AllCatalogsPage from './pages/AllCatalogsPage/AllCatalogsPage.jsx'
+import CatalogPage from './pages/CatalogPage/CatalogPage.jsx'
+import ChangeCatalog from './pages/ChangeCatalog/ChangeCatalog.jsx'
+import AddCatalogPage from './pages/AddCatalogPage/AddCatalogPage.jsx'
+import SuccessPage from './pages/SuccessPage/SuccessPage.jsx'
+import ErrorPage from './pages/ErrorPage/ErrorPage.jsx'
 
 function App() {
 	const [isAuth, setIsAuth] = useState(false)
@@ -31,21 +31,21 @@ function App() {
 					<Routes>
 						<Route path='/' element={<MainPage />} />
 						<Route path='auth' element={<AuthPage />} />
-						<Route path='auth-error' element={<AuthErrorPage />} />
+						<Route path='auth-error' element={<ErrorPage />} />
 						<Route path='details/:type/:id' element={<DetailPage />} />
 						<Route path='add-maintenance' element={<AddMaintenancePage />} />
-						<Route path='add-complaint' element={<AddComplaintPage />} />
-						<Route path='add-car' element={<AddCarPage />} />
+						<Route path='add-complaint' element={<AddClaimPage />} />
+						<Route path='add-car' element={<AddMachinePage />} />
 						<Route path='catalogs/' element={<Outlet />}>
-							<Route index element={<CatalogsPage />} />
+							<Route index element={<AllCatalogsPage />} />
 							<Route path=':type' element={<Outlet />}>
 								<Route index element={<CatalogPage />} />
-								<Route path=':id' element={<ChangeCatalogPage />} />
+								<Route path=':id' element={<ChangeCatalog />} />
 								<Route path='new' element={<AddCatalogPage />} />
 							</Route>
 						</Route>
-						<Route path='success' element={<PostSuccessPage />} />
-						<Route path='fail' element={<PostFailPage />} />
+						<Route path='success' element={<SuccessPage />} />
+						<Route path='fail' element={<ErrorPage />} />
 					</Routes>
 					<Footer />
 				</div>

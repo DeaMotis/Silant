@@ -1,26 +1,31 @@
-from django.urls import path
-from .views import (
-    MachineListView,
-    MachineDetailView,
-    MaintenanceListView,
-    MaintenanceCreateView,
-    MaintenanceUpdateView,
-    MaintenanceDeleteView,
-    ClaimListView,
-    ClaimCreateView,
-    ClaimUpdateView,
-)
+from django.urls import path, include
+from rest_framework import routers
+from .views import schema_view
+
+from .views import MachineViewSet, MaintenanceViewSet, ClaimViewSet, UserInfoViewSet, VehicleViewSet, EngineViewSet, \
+    TransmissionViewSet, DrivingAxleViewSet, SteeringAxleViewSet, MaintenanceTypeViewSet, BreakageViewSet, \
+    RepairViewSet, ServiceCompanyViewSet, my_login
+
+router = routers.DefaultRouter()
+router.register('machine', MachineViewSet)
+router.register('maintenance', MaintenanceViewSet)
+router.register('claim', ClaimViewSet)
+router.register('users', UserInfoViewSet)
+router.register('vehicles', VehicleViewSet)
+router.register('engines', EngineViewSet)
+router.register('transmissions', TransmissionViewSet)
+router.register('driving-axles', DrivingAxleViewSet)
+router.register('steering-axles', SteeringAxleViewSet)
+router.register('maintenance-types', MaintenanceTypeViewSet)
+router.register('breakages', BreakageViewSet)
+router.register('repair-ways', RepairViewSet)
+router.register('service-companies', ServiceCompanyViewSet)
+
 
 urlpatterns = [
-    path('machines/', MachineListView.as_view(), name='machine_list'),
-    path('machines/<int:pk>/', MachineDetailView.as_view(), name='machine_detail'),
-
-    path('maintenances/', MaintenanceListView.as_view(), name='maintenance_list'),
-    path('maintenances/create/', MaintenanceCreateView.as_view(), name='maintenance_create'),
-    path('maintenances/<int:pk>/update/', MaintenanceUpdateView.as_view(), name='maintenance_update'),
-    path('maintenances/<int:pk>/delete/', MaintenanceDeleteView.as_view(), name='maintenance_delete'),
-
-    path('claims/', ClaimListView.as_view(), name='claim_list'),
-    path('claims/create/', ClaimCreateView.as_view(), name='claim_create'),
-    path('claims/<int:pk>/update/', ClaimUpdateView.as_view(), name='claim_update'),
+    path('api/', include(router.urls)),
+    path('api/user-login/', my_login),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('swagger.json/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('', include(router.urls)),
 ]

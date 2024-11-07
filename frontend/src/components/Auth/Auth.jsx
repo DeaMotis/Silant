@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './Auth.css'
-import serviceContext from '../context/Context.js'
+import serviceContext from '../../context/Context.js'
 
 const Auth = () => {
 	const location = useLocation()

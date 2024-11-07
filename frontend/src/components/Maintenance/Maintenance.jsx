@@ -2,17 +2,17 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Maintenance.css'
 import {
-	getAllCars,
-	getClientsCars,
-	getServiceCompaniesCars,
+	getAllMachines,
+	getClientsMachines,
+	getServiceCompaniesMachines,
 	getAllMaintenance,
 	getClientsMaintenance,
 	getServiceCompaniesMaintenance,
 	getMaintenanceTypes,
 	getAllServiceCompanies,
-} from '../api/dataService.js'
-import serviceContext from '../context/Context.js'
-import { initialMaintenanceSortWay } from '../utils/constants.js'
+} from '../../api/dataService.js'
+import serviceContext from '../../context/Context.js'
+import { initialMaintenanceSortWay } from '../../utils/constants.js'
 
 const Maintenance = ({ group }) => {
 	const navigate = useNavigate()
@@ -21,7 +21,7 @@ const Maintenance = ({ group }) => {
 	const maintenanceTypesRef = useRef(null)
 	const [currentData, setCurrentData] = useState([])
 	const [allData, setAllData] = useState([])
-	const [allCars, setAllCars] = useState([])
+	const [allMachines, setAllMachines] = useState([])
 	const [allMaintenanceTypes, setAllMaintenanceTypes] = useState([])
 	const [allServiceCompanies, setAllServiceCompanies] = useState([])
 	const [userName, setUserName] = useState(localStorage.getItem('user'))
@@ -50,11 +50,11 @@ const Maintenance = ({ group }) => {
 			)
 		}
 		if (group === '3') {
-			getAllCars(setAllCars)
+			getAllMachines(setAllMachines)
 		} else if (group === '1') {
-			getClientsCars(userName, password, userId, setAllCars)
+			getClientsMachines(userName, password, userId, setAllMachines)
 		} else if (group === '2') {
-			getServiceCompaniesCars(userName, password, setAllCars)
+			getServiceCompaniesMachines(userName, password, setAllMachines)
 		}
 		getMaintenanceTypes(setAllMaintenanceTypes)
 		getAllServiceCompanies(setAllServiceCompanies)
@@ -65,7 +65,7 @@ const Maintenance = ({ group }) => {
 		navigate('add-maintenance')
 	}
 
-	const handleCarFilter = e => {
+	const handleMachineFilter = e => {
 		if (e.target.value == 0) {
 			setCurrentData(allData)
 		} else {
@@ -165,8 +165,8 @@ const Maintenance = ({ group }) => {
 				<tbody>
 					<tr>
 						<td>
-							<button onClick={handleSimpleSort} value='car_id_details'>
-								{sortWay['car_id_details']}
+							<button onClick={handleSimpleSort} value='machine_id_details'>
+								{sortWay['machine_id_details']}
 							</button>
 						</td>
 						<td>
@@ -207,15 +207,15 @@ const Maintenance = ({ group }) => {
 						<td>
 							<select
 								className='maintenance-data-filter'
-								onChange={handleCarFilter}
+								onChange={handleMachineFilter}
 							>
 								<option ref={carRef} value={0}>
 									Все
 								</option>
-								{allCars.map(element => {
+								{allMachines.map(element => {
 									return (
 										<option key={element.id} value={element.id}>
-											{element.car_id}
+											{element.machine_id}
 										</option>
 									)
 								})}
@@ -264,7 +264,7 @@ const Maintenance = ({ group }) => {
 					{currentData.map(element => {
 						return (
 							<tr key={element.id}>
-								<td>{element.car_id_details}</td>
+								<td>{element.machine_id_details}</td>
 								<td>
 									<Link
 										to={`details/maintenance-types/${element.maintenance_type}`}

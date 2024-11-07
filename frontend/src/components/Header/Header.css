@@ -1,0 +1,79 @@
+.header {
+    min-height: 15%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: "PT Astra Font bold";
+    background-color: var(--color-3);
+    padding: 10px;
+    text-align: center;
+}
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.separator {
+    content: "";
+    width: 1px;
+    height: 30px;
+    background-color: var(--color-1);
+    margin: 10px;
+}
+
+.logo-sign {
+    height: 20px;
+    width: 120px;
+}
+
+.logo-image {
+    height: 20px;
+}
+
+.header-title {
+    margin: 10px;
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+
+    .logo-sign {
+        height: 15px;
+        width: 80px;
+    }
+
+    .logo-image {
+        height: 15px;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 766px) {
+
+    .logo-sign {
+        height: 10px;
+        width: 60px;
+    }
+
+    .logo-image {
+        height: 10px;
+    }
+
+    .separator {
+        height: 12px;
+        margin: 5px;
+    }
+
+    .desktop-header-container {
+        display: none;
+    }
+
+}

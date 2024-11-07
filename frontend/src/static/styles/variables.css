@@ -1,21 +1,21 @@
 @font-face {
 	font-family: 'PT Astra Font regular';
-	src: url(../static/fonts/PT_Astra_Sans/PT-Astra-Sans_Regular.ttf);
+	src: url(../fonts/PT_Astra_Sans/PT-Astra-Sans_Regular.ttf);
 }
 
 @font-face {
 	font-family: 'PT Astra Font bold';
-	src: url(../static/fonts/PT_Astra_Sans/PT-Astra-Sans_Bold.ttf);
+	src: url(../fonts/PT_Astra_Sans/PT-Astra-Sans_Bold.ttf);
 }
 
 @font-face {
 	font-family: 'PT Astra Font italic';
-	src: url(../static/fonts/PT_Astra_Sans/PT-Astra-Sans_Italic.ttf);
+	src: url(../fonts/PT_Astra_Sans/PT-Astra-Sans_Italic.ttf);
 }
 
 @font-face {
 	font-family: 'PT Astra Font bold italic';
-	src: url(../static/fonts/PT_Astra_Sans/PT-Astra-Sans_Bold-Italic.ttf);
+	src: url(../fonts/PT_Astra_Sans/PT-Astra-Sans_Bold-Italic.ttf);
 }
 
 :root {

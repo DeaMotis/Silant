@@ -1,53 +1,120 @@
-from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Machine, Maintenance, Claim
+from rest_framework import serializers
+
+from .models import Machine, Maintenance, Claim, Vehicle, Engine, Transmission, DrivingAxle, SteeringAxle, \
+    MaintenanceType, Breakage, Repair, ServiceCompany
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ["id", 'username', "groups"]
+
+
+class VehicleSerializer(serializers.ModelSerializer):
+    verbose_name = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = Vehicle
+        fields = '__all__'
+
+
+class EngineSerializer(serializers.ModelSerializer):
+    verbose_name = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = Engine
+        fields = '__all__'
+
+
+class TransmissionSerializer(serializers.ModelSerializer):
+    verbose_name = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = Transmission
+        fields = '__all__'
+
+
+class DrivingAxleSerializer(serializers.ModelSerializer):
+    verbose_name = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = DrivingAxle
+        fields = '__all__'
+
+
+class SteeringAxleSerializer(serializers.ModelSerializer):
+    verbose_name = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = SteeringAxle
+        fields = '__all__'
+
+
+class MaintenanceTypeSerializer(serializers.ModelSerializer):
+    verbose_name = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = MaintenanceType
+        fields = '__all__'
+
+
+class BreakageSerializer(serializers.ModelSerializer):
+    verbose_name = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = Breakage
+        fields = '__all__'
+
+
+class RepairSerializer(serializers.ModelSerializer):
+    verbose_name = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = Repair
+        fields = '__all__'
+
+
+class ServiceCompanySerializer(serializers.ModelSerializer):
+    verbose_name = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = ServiceCompany
+        fields = '__all__'
 
 
 class MachineSerializer(serializers.ModelSerializer):
-    client = UserSerializer()
-    service_company = UserSerializer()
+    vehicle_model_info = VehicleSerializer(read_only=True, source="vehicle_model")
+    engine_model_info = EngineSerializer(read_only=True, source="engine_model")
+    transmission_model_info = TransmissionSerializer(read_only=True, source="transmission_model")
+    driving_axle_model_info = DrivingAxleSerializer(read_only=True, source="driving_axle_model")
+    steering_axle_model_info = SteeringAxleSerializer(read_only=True, source="steering_axle_model")
+    client_info = UserSerializer(read_only=True, source="client")
+    service_company_info = ServiceCompanySerializer(read_only=True, source="service_company")
 
     class Meta:
         model = Machine
-        fields = [
-            'serial_number', 'model', 'engine_model',
-            'engine_serial_number', 'transmission_model',
-            'transmission_serial_number', 'leading_bridge_model',
-            'leading_bridge_serial_number', 'controlled_bridge_model',
-            'controlled_bridge_serial_number', 'supply_contract_number',
-            'shipping_date', 'recipient', 'delivery_address',
-            'configuration', 'client', 'service_company',
-        ]
+        fields = '__all__'
 
 
 class MaintenanceSerializer(serializers.ModelSerializer):
-    machine = MachineSerializer()
-    service_company = UserSerializer()
+    machine_id_details = serializers.CharField(read_only=True)
+    service_company_info = ServiceCompanySerializer(read_only=True, source="service_company")
+    maintenance_type_info = MaintenanceTypeSerializer(read_only=True, source="maintenance_type")
 
     class Meta:
         model = Maintenance
-        fields = [
-            'machine', 'maintenance_type', 'maintenance_date',
-            'hours_operational', 'order_number', 'order_date',
-            'organization', 'service_company',
-        ]
+        fields = '__all__'
 
 
 class ClaimSerializer(serializers.ModelSerializer):
-    machine = MachineSerializer()
-    service_company = UserSerializer()
+    machine_id_details = serializers.CharField(read_only=True)
+    service_company_info = ServiceCompanySerializer(read_only=True, source="service_company")
+    breakage_type_info = BreakageSerializer(read_only=True, source="breakage_type")
+    repairing_way_info = RepairSerializer(read_only=True, source="repairing_way")
 
     class Meta:
         model = Claim
-        fields = [
-            'machine', 'rejection_date', 'hours_operational',
-            'failure_unit', 'failure_description',
-            'recovery_method', 'spare_parts_used',
-            'recovery_date', 'downtime', 'service_company',
-        ]
+        fields = '__all__'
+        read_only_fields = ['down_time']
+

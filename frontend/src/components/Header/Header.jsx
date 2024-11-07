@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Header.css'
-import Contacts from './Contacts.jsx'
-import Logo1 from '../static/images/Logotype RGB.png'
-import Logo2 from '../static/images/Logotype accent RGB-1.png'
-import Auth from './Auth.jsx'
+import Contacts from '../Contacts/Contacts.jsx'
+import Logo1 from '../../static/images/Logo.svg'
+import Logo2 from '../../static/images/Logo-min.svg'
+import Auth from '../Auth/Auth.jsx'
 
 const Header = () => {
 	return (

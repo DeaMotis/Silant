@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/SearchPanel.css'
-import { getFilteredCars } from '../api/dataService.js'
+import './SearchBlock.css'
+import { getFilteredMachines } from '../../api/dataService.js'
 
 const SearchBlock = () => {
 	const ref = useRef()
@@ -13,7 +13,7 @@ const SearchBlock = () => {
 
 	const searchHandle = async e => {
 		e.preventDefault()
-		await getFilteredCars(vehicleNumber, setFilteredData)
+		await getFilteredMachines(vehicleNumber, setFilteredData)
 		if (!filteredData) {
 			setResultMessage('Данные об указанной технике отсутствуют')
 		}
@@ -66,7 +66,7 @@ const SearchBlock = () => {
 				<tbody>
 					{filteredData ? (
 						<tr>
-							<td>{filteredData.car_id}</td>
+							<td>{filteredData.machine_id}</td>
 							<td>
 								<Link to={`details/vehicles/${filteredData.vehicle_model}`}>
 									{filteredData.vehicle_model_info.name}

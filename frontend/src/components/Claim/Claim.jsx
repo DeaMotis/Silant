@@ -1,43 +1,43 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import '../styles/ComplaintBlock.css'
+import './Claim.css'
 import {
-	getAllComplaints,
-	getClientsComplaints,
-	getServiceCompaniesComplaints,
+	getAllClaims,
+	getClientsClaims,
+	getServiceCompaniesClaims,
 	getBreakagesList,
 	getRepairWaysList,
 	getAllServiceCompanies,
-	getServiceCompaniesCars,
-	getClientsCars,
-	getAllCars,
-} from '../api/dataService.js'
-import serviceContext from '../context/Context.js'
-import { initialComplaintSortWay } from '../utils/constants.js'
+	getServiceCompaniesMachines,
+	getClientsMachines,
+	getAllMachines,
+} from '../../api/dataService.js'
+import serviceContext from '../../context/Context.js'
+import { initialClaimsSortWay } from '../../utils/constants.js'
 
 const Claim = ({ group }) => {
 	const navigate = useNavigate()
 	const breakageRef = useRef(null)
 	const repairRef = useRef(null)
-	const carRef = useRef(null)
+	const machineRef = useRef(null)
 	const serviceCompanyRef = useRef(null)
 	const [currentData, setCurrentData] = useState([])
 	const [allData, setAllData] = useState([])
-	const [allCars, setAllCars] = useState([])
+	const [allMachines, setAllMachines] = useState([])
 	const [allBreakages, setAllBreakages] = useState([])
 	const [allRepairWays, setAllRepairWays] = useState([])
 	const [allServiceCompanies, setAllServiceCompanies] = useState([])
 	const [userName, setUserName] = useState(localStorage.getItem('user'))
 	const [password, setPassword] = useState(localStorage.getItem('password'))
 	const [userId, setuserId] = useState(localStorage.getItem('id'))
-	const [sortWay, setSortWay] = useState(initialComplaintSortWay)
+	const [sortWay, setSortWay] = useState(initialClaimsSortWay)
 	const { pageId, setPageId } = useContext(serviceContext)
 
 	useEffect(() => {
 		if (group === '3') {
-			getAllComplaints(setAllData, setCurrentData)
+			getAllClaims(setAllData, setCurrentData)
 		} else if (group === '1') {
-			getClientsComplaints(
+			getClientsClaims(
 				userName,
 				password,
 				userId,
@@ -45,7 +45,7 @@ const Claim = ({ group }) => {
 				setCurrentData
 			)
 		} else if (group === '2') {
-			getServiceCompaniesComplaints(
+			getServiceCompaniesClaims(
 				userName,
 				password,
 				setAllData,
@@ -53,11 +53,11 @@ const Claim = ({ group }) => {
 			)
 		}
 		if (group === '3') {
-			getAllCars(setAllCars)
+			getAllMachines(setAllMachines)
 		} else if (group === '1') {
-			getClientsCars(userName, password, userId, setAllCars)
+			getClientsMachines(userName, password, userId, setAllMachines)
 		} else if (group === '2') {
-			getServiceCompaniesCars(userName, password, setAllCars)
+			getServiceCompaniesMachines(userName, password, setAllMachines)
 		}
 		getBreakagesList(setAllBreakages)
 		getRepairWaysList(setAllRepairWays)
@@ -65,16 +65,16 @@ const Claim = ({ group }) => {
 		setPageId(3)
 	}, [])
 
-	const handleAddComplaint = () => {
-		navigate('/add-complaint')
+	const handleAddClaim = () => {
+		navigate('/add-claim')
 	}
 
-	const handleCarFilter = e => {
+	const handleMachineFilter = e => {
 		if (e.target.value == 0) {
 			setCurrentData(allData)
 		} else {
 			const result = allData.filter(item => {
-				return item.car_id == e.target.value
+				return item.machine_id == e.target.value
 			})
 			setCurrentData(result)
 		}
@@ -95,7 +95,7 @@ const Claim = ({ group }) => {
 			setCurrentData(result)
 		}
 		repairRef.current.selected = true
-		carRef.current.selected = true
+		machineRef.current.selected = true
 		if (group !== '2') {
 			serviceCompanyRef.current.selected = true
 		}
@@ -111,7 +111,7 @@ const Claim = ({ group }) => {
 			setCurrentData(result)
 		}
 		breakageRef.current.selected = true
-		carRef.current.selected = true
+		machineRef.current.selected = true
 		if (group !== '2') {
 			serviceCompanyRef.current.selected = true
 		}
@@ -128,16 +128,16 @@ const Claim = ({ group }) => {
 		}
 		breakageRef.current.selected = true
 		repairRef.current.selected = true
-		carRef.current.selected = true
+		machineRef.current.selected = true
 	}
 
 	const handleDetailedSort = e => {
 		const field = e.target.value
 		const result = [...currentData]
 		if (sortWay[field] === '▽' || sortWay[field] === '-') {
-			setSortWay({ ...initialComplaintSortWay, [field]: '△' })
+			setSortWay({ ...initialClaimsSortWay, [field]: '△' })
 		} else {
-			setSortWay({ ...initialComplaintSortWay, [field]: '▽' })
+			setSortWay({ ...initialClaimsSortWay, [field]: '▽' })
 		}
 		result.sort((a, b) => {
 			if (a[field]['name'] < b[field]['name']) {
@@ -155,9 +155,9 @@ const Claim = ({ group }) => {
 		const field = e.target.value
 		const result = [...currentData]
 		if (sortWay[field] === '▽' || sortWay[field] === '-') {
-			setSortWay({ ...initialComplaintSortWay, [field]: '△' })
+			setSortWay({ ...initialClaimsSortWay, [field]: '△' })
 		} else {
-			setSortWay({ ...initialComplaintSortWay, [field]: '▽' })
+			setSortWay({ ...initialClaimsSortWay, [field]: '▽' })
 		}
 		result.sort((a, b) => {
 			if (a[field] < b[field]) {
@@ -172,8 +172,8 @@ const Claim = ({ group }) => {
 	}
 
 	return (
-		<div className='complaint-info-container'>
-			<table className='complaint-result-table'>
+		<div className='claim-info-container'>
+			<table className='claim-result-table'>
 				<thead>
 					<tr>
 						<th>Зав. № машины</th>
@@ -191,8 +191,8 @@ const Claim = ({ group }) => {
 				<tbody>
 					<tr>
 						<td>
-							<button onClick={handleSimpleSort} value='car_id_details'>
-								{sortWay['car_id_details']}
+							<button onClick={handleSimpleSort} value='machine_id_details'>
+								{sortWay['machine_id_details']}
 							</button>
 						</td>
 						<td>
@@ -232,16 +232,16 @@ const Claim = ({ group }) => {
 					<tr>
 						<td>
 							<select
-								className='complaint-data-filter'
-								onChange={handleCarFilter}
+								className='claim-data-filter'
+								onChange={handleMachineFilter}
 							>
-								<option ref={carRef} value={0}>
+								<option ref={machineRef} value={0}>
 									Все
 								</option>
-								{allCars.map(element => {
+								{allMachines.map(element => {
 									return (
 										<option key={element.id} value={element.id}>
-											{element.car_id}
+											{element.machine_id}
 										</option>
 									)
 								})}
@@ -250,7 +250,7 @@ const Claim = ({ group }) => {
 						<td colSpan={2} className='empty-cell'></td>
 						<td>
 							<select
-								className='complaint-data-filter'
+								className='claim-data-filter'
 								onChange={handleBreakageFilter}
 							>
 								<option ref={breakageRef} value={0}>
@@ -268,7 +268,7 @@ const Claim = ({ group }) => {
 						<td className='empty-cell'></td>
 						<td>
 							<select
-								className='complaint-data-filter'
+								className='claim-data-filter'
 								onChange={handleRepairFilter}
 							>
 								<option ref={repairRef} value={0}>
@@ -287,7 +287,7 @@ const Claim = ({ group }) => {
 						{group !== '2' ? (
 							<td>
 								<select
-									className='complaint-data-filter'
+									className='claim-data-filter'
 									onChange={handleServiceCompanyFilter}
 								>
 									<option ref={serviceCompanyRef} value={0}>
@@ -310,7 +310,7 @@ const Claim = ({ group }) => {
 					{currentData.map(element => {
 						return (
 							<tr key={element.id}>
-								<td>{element.car_id_details}</td>
+								<td>{element.machine_id_details}</td>
 
 								<td>{element.breakage_date}</td>
 								<td>{element.running_time}</td>
@@ -355,7 +355,7 @@ const Claim = ({ group }) => {
 				</tfoot>
 			</table>
 			{(group === '2' || group === '3') && (
-				<button onClick={handleAddComplaint} className='add-complaint-btn'>
+				<button onClick={handleAddClaim} className='add-claim-btn'>
 					Добавить данные о рекламациях
 				</button>
 			)}

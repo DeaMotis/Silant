@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react'
 import './MainInfo.css'
-import MainBlock from './Main.jsx'
-import MaintenanceBlock from './Maintenance.jsx'
-import ComplaintBlock from './Claim.jsx'
+import Main from '../Main/Main.jsx'
+import Maintenance from '../Maintenance/Maintenance.jsx'
+import Claim from '../Claim/Claim.jsx'
 
 const MainInfo = () => {
 	const [currentDataType, setCurrentDataType] = useState(1)

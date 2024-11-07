@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+    padding: 0;
+    margin: 0;
+    min-width: 100%;
+    font-size: 18px;
+    line-height: 1;
+    font-family: "PT Astra Font regular", sans-serif;
+    overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a,
+a:hover,
+a:visited {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--color-2);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+button {
+    cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+table {
+    border-collapse: collapse;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.root-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 1366px) {
+    body {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width:992px) and (max-width: 1365px) {
+    body {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+    body {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 766px) {
+    body {
+        font-size: 0.5rem;
+    }
 }

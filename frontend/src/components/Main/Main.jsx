@@ -2,19 +2,19 @@ import React, { useEffect, useRef, useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Main.css'
 import {
-	getAllCars,
-	getClientsCars,
-	getServiceCompaniesCars,
+	getAllMachines,
+	getClientsMachines,
+	getServiceCompaniesMachines,
 	getVehicleList,
 	getEngineList,
 	getTransmissionList,
 	getDrivingAxleList,
 	getSteeringAxleList,
-} from '../api/dataService'
-import serviceContext from '../context/Context.js'
-import { initialCarsSortWay } from '../utils/constants.js'
+} from '../../api/dataService'
+import serviceContext from '../../context/Context.js'
+import { initialMachinesSortWay } from '../../utils/constants.js'
 
-const MainBlock = ({ group }) => {
+const Main = ({ group }) => {
 	const navigate = useNavigate()
 	const vehicleRef = useRef(null)
 	const engineRef = useRef(null)
@@ -31,16 +31,16 @@ const MainBlock = ({ group }) => {
 	const [userName, setUserName] = useState(localStorage.getItem('user'))
 	const [password, setPassword] = useState(localStorage.getItem('password'))
 	const [userId, setuserId] = useState(localStorage.getItem('id'))
-	const [sortWay, setSortWay] = useState(initialCarsSortWay)
+	const [sortWay, setSortWay] = useState(initialMachinesSortWay)
 	const { pageId, setPageId } = useContext(serviceContext)
 
 	useEffect(() => {
 		if (group === '3') {
-			getAllCars(setAllData, setCurrentData)
+			getAllMachines(setAllData, setCurrentData)
 		} else if (group === '1') {
-			getClientsCars(userName, password, userId, setAllData, setCurrentData)
+			getClientsMachines(userName, password, userId, setAllData, setCurrentData)
 		} else if (group === '2') {
-			getServiceCompaniesCars(userName, password, setAllData, setCurrentData)
+			getServiceCompaniesMachines(userName, password, setAllData, setCurrentData)
 		}
 		getVehicleList(setAllVehicles)
 		getEngineList(setAllEngines)
@@ -50,8 +50,8 @@ const MainBlock = ({ group }) => {
 		setPageId(1)
 	}, [])
 
-	const handleAddCar = () => {
-		navigate('/add-car')
+	const handleAddMachines = () => {
+		navigate('/add-machine')
 	}
 
 	const handleVehicleFilter = e => {
@@ -66,7 +66,7 @@ const MainBlock = ({ group }) => {
 			transmissionRef.current.selected = true
 			drivingAxleRef.current.selected = true
 			steeringAxleRef.current.selected = true
-			setSortWay(initialCarsSortWay)
+			setSortWay(initialMachinesSortWay)
 		}
 	}
 
@@ -82,7 +82,7 @@ const MainBlock = ({ group }) => {
 			transmissionRef.current.selected = true
 			drivingAxleRef.current.selected = true
 			steeringAxleRef.current.selected = true
-			setSortWay(initialCarsSortWay)
+			setSortWay(initialMachinesSortWay)
 		}
 	}
 
@@ -98,7 +98,7 @@ const MainBlock = ({ group }) => {
 			engineRef.current.selected = true
 			drivingAxleRef.current.selected = true
 			steeringAxleRef.current.selected = true
-			setSortWay(initialCarsSortWay)
+			setSortWay(initialMachinesSortWay)
 		}
 	}
 
@@ -114,7 +114,7 @@ const MainBlock = ({ group }) => {
 			engineRef.current.selected = true
 			transmissionRef.current.selected = true
 			steeringAxleRef.current.selected = true
-			setSortWay(initialCarsSortWay)
+			setSortWay(initialMachinesSortWay)
 		}
 	}
 
@@ -130,7 +130,7 @@ const MainBlock = ({ group }) => {
 			engineRef.current.selected = true
 			transmissionRef.current.selected = true
 			drivingAxleRef.current.selected = true
-			setSortWay(initialCarsSortWay)
+			setSortWay(initialMachinesSortWay)
 		}
 	}
 
@@ -138,9 +138,9 @@ const MainBlock = ({ group }) => {
 		const field = e.target.value
 		const result = [...currentData]
 		if (sortWay[field] === '▽' || sortWay[field] === '-') {
-			setSortWay({ ...initialCarsSortWay, [field]: '△' })
+			setSortWay({ ...initialMachinesSortWay, [field]: '△' })
 		} else {
-			setSortWay({ ...initialCarsSortWay, [field]: '▽' })
+			setSortWay({ ...initialMachinesSortWay, [field]: '▽' })
 		}
 		result.sort((a, b) => {
 			if (a[field]['name'] < b[field]['name']) {
@@ -158,9 +158,9 @@ const MainBlock = ({ group }) => {
 		const field = e.target.value
 		const result = [...currentData]
 		if (sortWay[field] === '▽' || sortWay[field] === '-') {
-			setSortWay({ ...initialCarsSortWay, [field]: '△' })
+			setSortWay({ ...initialMachinesSortWay, [field]: '△' })
 		} else {
-			setSortWay({ ...initialCarsSortWay, [field]: '▽' })
+			setSortWay({ ...initialMachinesSortWay, [field]: '▽' })
 		}
 		result.sort((a, b) => {
 			if (a[field] < b[field]) {
@@ -205,8 +205,8 @@ const MainBlock = ({ group }) => {
 							</button>
 						</td>
 						<td>
-							<button onClick={handleSimpleSort} value='car_id'>
-								{sortWay['car_id']}
+							<button onClick={handleSimpleSort} value='machine_id'>
+								{sortWay['machine_id']}
 							</button>
 						</td>
 						<td>
@@ -450,7 +450,7 @@ const MainBlock = ({ group }) => {
 				</tfoot>
 			</table>
 			{group === '3' && (
-				<button onClick={handleAddCar} className='add-car-btn'>
+				<button onClick={handleAddMachines} className='add-machine-btn'>
 					Добавить данные о погрузчиках
 				</button>
 			)}
@@ -458,4 +458,4 @@ const MainBlock = ({ group }) => {
 	)
 }
 
-export default MainBlock
+export default Main
